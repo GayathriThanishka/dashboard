@@ -1,9 +1,27 @@
+import 'dart:math';
+
 import 'package:authendication/model/piechart_list.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class PieChartTask extends StatelessWidget {
-  const PieChartTask({super.key});
+  PieChartTask({super.key});
+  final List<Color> pieColor = [
+    const Color(0xffFFA600),
+    Colors.blue,
+    const Color.fromARGB(255, 8, 58, 82),
+    const Color(0xff661195),
+    const Color(0xffa05195)
+  ];
+  Color getRandomColor() {
+    final random = Random();
+    return Color.fromRGBO(
+      random.nextInt(256), // Red
+      random.nextInt(256), // Green
+      random.nextInt(256), // Blue
+      1.0, // Opacity
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +36,16 @@ class PieChartTask extends StatelessWidget {
             child: PieChart(PieChartData(
                 sectionsSpace: 0,
                 centerSpaceRadius: 30,
-                sections: List.generate(
-                  PieChartModel.pieChartList.length,
-                  (index) {
-                    final data = PieChartModel.pieChartList[index];
-                    return PieChartSectionData(
-                        radius: 90,
-                        titleStyle: const TextStyle(color: Colors.white),
-                        title: '${data.percentage}%',
-                        color: data.color,
-                        value: data.percentage);
-                  },
-                ))),
+                sections: PieChartModel.pieChartList
+                    .map(
+                      (data) => PieChartSectionData(
+                          color: getRandomColor(),
+                          radius: 90,
+                          titleStyle: const TextStyle(color: Colors.white),
+                          title: '${data.percentage}%',
+                          value: data.percentage),
+                    )
+                    .toList())),
           ),
           const SizedBox(
             width: 50,
@@ -46,9 +62,9 @@ class PieChartTask extends StatelessWidget {
                       Container(
                         width: 16,
                         height: 16,
-                        color: PieChartModel.pieChartList[index].color,
+                        color: getRandomColor(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Text(PieChartModel.pieChartList[index].city)

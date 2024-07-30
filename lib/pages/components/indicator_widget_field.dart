@@ -1,4 +1,4 @@
-import 'package:authendication/model/piechart_list.dart';
+
 import 'package:flutter/material.dart';
 
 class IndicatorWidgetField extends StatelessWidget {
@@ -7,7 +7,7 @@ class IndicatorWidgetField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-    return Column(mainAxisAlignment: MainAxisAlignment.start,
+    return const Column(mainAxisAlignment: MainAxisAlignment.start,
       children: [IndicatorWidgetField()
       
     
