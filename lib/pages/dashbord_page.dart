@@ -19,14 +19,26 @@ class _PieChartPageState extends State<PieChartPage> {
       children: [
         Row(
           children: [
-            PieChartTask(),
-            const SizedBox(
-              height: 5,
-            ),
+            Column(children: [
+              const Text("Location",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              PieChartTask()
+            ]),
             CommonLineChart()
           ],
         ),
-        BarGraphChart()
+        Column(
+          children: [
+            const Text(
+              "weekly Growth",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            BarGraphChart(),
+          ],
+        )
       ],
     ));
   }
